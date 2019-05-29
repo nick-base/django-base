@@ -1,0 +1,25 @@
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.DS_Store
+*.orig
+*.rej
+*~
+*.o
+*.pyc
+*.pyo
+*.pyb
+*.pyd
+*.log
+*.mo
+*.so
+.vscode
+
+Anaconda3-2019.03-Linux-x86_64.sh
+bin/settings.sh
