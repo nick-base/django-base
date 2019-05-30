@@ -1,19 +1,18 @@
 #!/bin/bash
 . ./bin/base.sh --source-only
 
-if [ "$1" == 'conda' ]
+if [ "$1" == 'init' ]
 then
   # 检查下载安装Anaconda3
   check_conda=$(conda --version | grep "${conda_version}")
-  echo $check_conda
   if [ "$check_conda" == "" ]
   then
-    success "Anaconda${conda_version}已存在"
-  else
     echo 'Download Anaconda3...'
     wget "${anaconda_repo_path}${anaconda3_file}"
     sh ${anaconda3_file}
     rm ${anaconda3_file}
+  else
+    success "Anaconda${conda_version}已存在"
   fi
 
   # 检查环境变量
@@ -34,8 +33,8 @@ then
     success "[${check_env}] 已经存在"
     waring "执行移除命令: [conda env remove -n ${env_name}]"
   fi
-else
-  # 安装Python依赖包
-  source activate nweb
-  pip install -r ${requirements_path}
 fi
+
+# 安装Python依赖包
+source activate nweb
+pip install -r ${requirements_path}

@@ -6,3 +6,4 @@
 
 - Anaconda 管理Python版本
 - python 3.7
+- [Django2.2](https://docs.djangoproject.com/zh-hans/2.2/)
