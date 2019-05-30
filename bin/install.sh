@@ -35,6 +35,7 @@ then
     waring "执行移除命令: [conda env remove -n ${env_name}]"
   fi
 else
+  # 安装Python依赖包
   source activate nweb
   pip install -r ${requirements_path}
 fi
