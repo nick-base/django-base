@@ -23,3 +23,6 @@
 
 Anaconda3-2019.03-Linux-x86_64.sh
 bin/settings.sh
+migrations/
+__pycache__/
+web/db.sqlite3

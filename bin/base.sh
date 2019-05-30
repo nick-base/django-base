@@ -17,17 +17,17 @@ settings_file="${basepath}/settings.sh"
 
 function success()
 {
-  echo -e "\033[32m Info: $1 \033[0m"
+  echo -e "\033[32m $1 \033[0m"
 }
 
 function error()
 {
-  echo -e "\033[31m Error: $1 \033[0m"
+  echo -e "\033[31m $1 \033[0m"
 }
 
 function waring()
 {
-  echo -e "\033[33m Waring: $1 \033[0m"
+  echo -e "\033[33m $1 \033[0m"
 }
 
 if [ -f "${settings_file}" ]

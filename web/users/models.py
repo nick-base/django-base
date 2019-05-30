@@ -2,12 +2,13 @@ from django.db import models
 from django.utils.translation import gettext as _
 
 from utils.models import BaseModel
-from users.permissions import PERMISSION_DIC
+from users.constant import PERMISSION_DIC
 
 class Account(BaseModel): 
     mobile = models.CharField(max_length=32, null=True, blank=True)
     email_address = models.EmailField(max_length=64, null=True, blank=True)
     password = models.CharField(max_length=128, null=True, blank=True)
+    name = models.CharField(max_length=128, null = True, blank = True)
     first_name = models.CharField(max_length=128, null = True, blank = True)
     last_name = models.CharField(max_length=128, null = True, blank = True)
     active = models.BooleanField(default=False)
@@ -19,7 +20,7 @@ class Account(BaseModel):
     last_login_time = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        db_table = 'account'
+        db_table = 'u_account'
         app_label = 'users'
 
     def get_roles(self):
@@ -59,10 +60,13 @@ class Permission(BaseModel):
     code = models.CharField(max_length=256, unique=True)
     description = models.CharField(max_length=512)
     long_description = models.TextField(_('Description'), null=True)
+    order=models.IntegerField(null=True, default=0)
+    parent_permission = models.ForeignKey('Permission', related_name="parent", null=True, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'permission'
+        db_table = 'u_permission'
         app_label = 'users'
+
 
 class Role(BaseModel):
     title = models.CharField(max_length=512)
@@ -70,7 +74,7 @@ class Role(BaseModel):
     created_account = models.ForeignKey(Account, db_column='created_account', related_name='created_role', null=True, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'role'
+        db_table = 'u_role'
         app_label = 'users'
 
     def add_permission(self,permission):
@@ -85,5 +89,12 @@ class AccountRole(BaseModel):
     role = models.ForeignKey(Role, related_name='role_account', on_delete=models.CASCADE)
     created_account = models.ForeignKey(Account, db_column='created_account', related_name='created_account_role', null=True, on_delete=models.CASCADE)
     class Meta:
-        db_table = 'account_role'
+        db_table = 'u_account_role'
         app_label = 'users'
+
+__all__ = [
+    'Account',
+    'Permission',
+    'Role',
+    'AccountRole'
+]
