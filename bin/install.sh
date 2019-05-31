@@ -31,7 +31,7 @@ then
     conda create -n $env_name python=$python_version
   else
     success "[${check_env}] 已经存在"
-    waring "执行移除命令: [conda env remove -n ${env_name}]"
+    waring "执行: [conda env remove -n ${env_name}]可以移除该环境"
   fi
 fi
 

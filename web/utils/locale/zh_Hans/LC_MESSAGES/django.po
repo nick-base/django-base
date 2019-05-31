@@ -1,0 +1,2 @@
+msgid "app utils"
+msgstr "app utils zh"
