@@ -40,7 +40,7 @@ class Account(BaseModel):
         Args: 
             perm: permission code (string)
         """
-        if not PERMISSION_DIC.has_key(perm):
+        if not perm in PERMISSION_DIC:
             raise Exception("The permission code is error")
         perm = PERMISSION_DIC.get(perm)
         perms = self.get_perms()
