@@ -2,6 +2,7 @@ from django.urls import path
 from users.views import *
 
 
-user_urls = [
+urlpatterns = [
     path('', Home.as_view()),
+    path('login', Login.as_view()),
 ]
